@@ -24,8 +24,8 @@ const Login = () => {
   let dispatch = useDispatch()
   let navigate = useNavigate()
   const [state, setState] = useState({
-    username: '9842998058',
-    password: '9842998058',
+    username: '',
+    password: '',
     errorMessage: '',
   })
   const [validated, setValidated] = useState(false)
