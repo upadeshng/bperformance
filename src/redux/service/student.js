@@ -1,6 +1,10 @@
 import http from 'src/httpCommon'
 
 class StudentService {
+  getAll() {
+    return http.get('/student')
+  }
+
   get(id) {
     return http.get(`/student/${id}`)
   }
