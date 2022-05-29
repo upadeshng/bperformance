@@ -1,4 +1,4 @@
-import { GET_STUDENT } from './types'
+import { GET_ALL_STUDENTS, GET_STUDENT } from './types'
 import StudentService from 'src/redux/service/student'
 
 export const getStudent = (id) => async (dispatch) => {
@@ -7,6 +7,19 @@ export const getStudent = (id) => async (dispatch) => {
 
     dispatch({
       type: GET_STUDENT,
+      payload: res.data,
+    })
+  } catch (err) {
+    console.log('error', err)
+  }
+}
+
+export const getAllStudent = () => async (dispatch) => {
+  try {
+    const res = await StudentService.getAll()
+
+    dispatch({
+      type: GET_ALL_STUDENTS,
       payload: res.data,
     })
   } catch (err) {

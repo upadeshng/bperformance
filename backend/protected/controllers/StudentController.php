@@ -9,6 +9,13 @@ header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token , Accep
 
 class StudentController extends Controller
 {
+    public function actionIndex()
+    {
+        $data = $this->getAll();
+        Common::sendResponse(200, CJSON::encode($data));
+        Yii::app()->end();
+    }
+
     public function actionView($id)
     {
         $data = $this->getStudent($id);
@@ -85,6 +92,26 @@ class StudentController extends Controller
         ];
 
         return $return_data;
+    }
+
+    public function getAll()
+    {
+        $model = new Student();
+        $data_provider = $model->search();
+        $data_provider->setPagination(false);
+
+        $items = [];
+        foreach ($data_provider->getData() as $key => $row) {
+            $item = $this->getStudentItem($row->id);
+            $items [] = $item;
+        }
+
+        /* format data */
+        $data = [
+            'items' => $items,
+        ];
+
+        return $data;
     }
 
     public function getStudent($id)
