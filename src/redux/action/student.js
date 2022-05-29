@@ -50,3 +50,15 @@ export const updateStudent = (id, formData, navigate) => async (dispatch) => {
     console.log('error', err)
   }
 }
+
+export const deleteStudent = (id, navigate) => async (dispatch) => {
+  try {
+    const res = await StudentService.delete(id)
+
+    if (res.data.result === 'SUCCESS') {
+      navigate('/student')
+    }
+  } catch (err) {
+    console.log('error', err)
+  }
+}
