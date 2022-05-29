@@ -1,4 +1,4 @@
-import { GET_STUDENT, ADD_STUDENT } from '../action/types'
+import { GET_ALL_STUDENTS, GET_STUDENT, ADD_STUDENT } from '../action/types'
 
 const initialState = {
   student: [],
@@ -19,6 +19,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         student: action.payload,
+        loading: false,
+      }
+    }
+    case GET_ALL_STUDENTS: {
+      return {
+        ...state,
+        studentListing: action.payload,
         loading: false,
       }
     }
