@@ -16,6 +16,10 @@ class StudentService {
   update(id, data) {
     return http.put(`/student/update/${id}`, data)
   }
+
+  delete(id) {
+    return http.delete(`/student/delete/${id}`)
+  }
 }
 
 export default new StudentService()

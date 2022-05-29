@@ -42,6 +42,23 @@ class StudentController extends Controller
         Yii::app()->end();
     }
 
+    public function actionDelete($id)
+    {
+        $item = Student::findById($id);
+
+        if($item->delete()){
+            $message = 'Student deleted successfully!';
+        }
+
+        $return_data = [
+            'result' => 'SUCCESS',
+            'message' => isset($message) ? $message : '',
+        ];
+
+        Common::sendResponse(200, CJSON::encode($return_data));
+        Yii::app()->end();
+    }
+
     public function addStudent()
     {
         $item = new Student();
